@@ -1,0 +1,1 @@
+.modal-gallery .gallery-image{display:block;width:100%;aspect-ratio:1/1;object-fit:cover}.modal-gallery .gallery-image.is-hidden{display:none}.gallery-next{position:absolute;right:13px;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;background:#ffffffd9;color:#222;font-size:28px;line-height:20px}.modal-gallery .image-count{z-index:1}
