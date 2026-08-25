@@ -1,11 +1,11 @@
 /* 일정은 카드 대신 한 줄씩 읽히는 여행 노트 형태로 정리합니다. */
-.timeline{margin-left:0}.event{padding:0 0 19px 43px}.event:before{left:14px;top:26px;bottom:-2px;border-left:1px dashed #dcd6f9;background:transparent}.event-dot{left:7px;top:21px;width:15px;height:15px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#6f42ff;font-size:0;box-shadow:0 2px 5px #6f42ff55}.event-card{display:grid;grid-template-columns:minmax(0,1fr) 96px;gap:12px;min-height:116px;border:0;border-bottom:1px solid #efeff1;border-radius:0;padding-bottom:18px;background:transparent}.event-copy{padding:0}.event-copy h4{font-size:16px;line-height:1.35;margin:1px 0 2px}.event-copy>p:not(.chinese-name){font-size:12px;line-height:1.45;margin:9px 0 0;color:#73737a}.event-label{font-size:11px;font-weight:700}.chinese-name{margin:0;color:#69696f;font-size:12px}.address{display:block;max-width:100%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;background:transparent;padding:3px 0;color:#8c8c94;font-size:11px;text-align:left}.address span{color:#6f42ff}.event-meta{margin-top:7px;color:#6f42ff;font-size:10px}.event-card .image-slot{order:2;width:96px;min-width:96px;height:96px;border-radius:7px}.event-card .image-slot:not(.has-image){background:#f1f0f4}.map-panel{box-shadow:0 7px 10px #17171708}.amap-pin{position:relative;width:40px;height:40px;overflow:visible;transform:none;border-radius:50%;background:#fff;border:2px solid #fff;box-shadow:0 2px 6px #0004}.amap-pin:after{content:'';position:absolute;z-index:-1;left:14px;bottom:-9px;width:12px;height:12px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#55bf25}.amap-pin img{display:block;width:36px;height:36px;border-radius:50%;object-fit:cover}.amap-pin span{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:#f0eff4;color:#6f42ff;transform:none}.amap-pin b{position:absolute;right:-5px;bottom:-3px;display:grid;place-items:center;width:16px;height:16px;border:1.5px solid #fff;border-radius:50%;background:#6f42ff;color:#fff;font:700 9px 'DM Mono'}.modal-gallery{position:relative}.modal-gallery .image-slot{display:flex;width:100%;min-width:0;height:auto;aspect-ratio:1/1}.modal-gallery .image-count{position:absolute;right:13px;bottom:13px;padding:5px 8px;border-radius:12px;background:#0009;color:#fff;font-size:11px}.modal-copy .chinese-name{margin:0 0 2px}.modal-copy .address{margin-bottom:16px}.modal-copy .address.copied{color:#6f42ff;font-weight:700}.modal-copy>p:not(.chinese-name){font-size:14px;line-height:1.65;color:#506062}.modal-copy .tip{margin-top:18px}
+.timeline{margin-left:0}.event{padding:0 0 19px 43px}.event:before{left:14px;top:26px;bottom:-2px;border-left:1px dashed #ecd6cb;background:transparent}.event-dot{left:7px;top:21px;width:15px;height:15px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#b02a30;font-size:0;box-shadow:0 2px 5px #b02a3055}.event-card{display:grid;grid-template-columns:minmax(0,1fr) 96px;gap:12px;min-height:116px;border:0;border-bottom:1px solid #efeff1;border-radius:0;padding-bottom:18px;background:transparent}.event-copy{padding:0}.event-copy h4{font-size:16px;line-height:1.35;margin:1px 0 2px}.event-copy>p:not(.chinese-name){font-size:12px;line-height:1.45;margin:9px 0 0;color:#73737a}.event-label{font-size:11px;font-weight:700}.chinese-name{margin:0;color:#69696f;font-size:12px}.address{display:block;max-width:100%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;background:transparent;padding:3px 0;color:#8c8c94;font-size:11px;text-align:left}.address span{color:#b02a30}.event-meta{margin-top:7px;color:#b02a30;font-size:10px}.event-card .image-slot{order:2;width:96px;min-width:96px;height:96px;border-radius:7px}.event-card .image-slot:not(.has-image){background:#f1f0f4}.map-panel{box-shadow:0 7px 10px #17171708}.amap-pin{position:relative;width:40px;height:40px;overflow:visible;transform:none;border-radius:50%;background:#fff;border:2px solid #fff;box-shadow:0 2px 6px #0004}.amap-pin:after{content:'';position:absolute;z-index:-1;left:14px;bottom:-9px;width:12px;height:12px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#b02a30}.amap-pin img{display:block;width:36px;height:36px;border-radius:50%;object-fit:cover}.amap-pin span{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:#f0eff4;color:#b02a30;transform:none}.amap-pin b{position:absolute;right:-5px;bottom:-3px;display:grid;place-items:center;width:16px;height:16px;border:1.5px solid #fff;border-radius:50%;background:#b02a30;color:#fff;font:700 9px 'DM Mono'}.modal-gallery{position:relative}.modal-gallery .image-slot{display:flex;width:100%;min-width:0;height:auto;aspect-ratio:1/1}.modal-gallery .image-count{position:absolute;right:13px;bottom:13px;padding:5px 8px;border-radius:12px;background:#0009;color:#fff;font-size:11px}.modal-copy .chinese-name{margin:0 0 2px}.modal-copy .address{margin-bottom:16px}.modal-copy .address.copied{color:#b02a30;font-weight:700}.modal-copy>p:not(.chinese-name){font-size:14px;line-height:1.65;color:#506062}.modal-copy .tip{margin-top:18px}
 
 /* 중국어 이름 복사 버튼 */
 .chinese-name{display:inline-flex;align-items:center;gap:5px;cursor:pointer;-webkit-user-select:none;user-select:none}
 .copy-btn{display:grid;place-items:center;padding:2px;background:transparent;color:#b4b4bc;line-height:0}
-.chinese-name:active .copy-btn{color:#6f42ff}
-.chinese-name.copied{color:#6f42ff;font-weight:700}
+.chinese-name:active .copy-btn{color:#b02a30}
+.chinese-name.copied{color:#b02a30;font-weight:700}
 
 /* 히어로 날씨 위젯 — 날씨에 따라 배경이 바뀝니다 */
 .hero{transition:background .6s,color .3s}
@@ -17,10 +17,33 @@
 .hero.has-weather,.hero.has-weather h2,.hero.has-weather h2 span{color:#fff}
 .hero.has-weather .eyebrow{color:#ffffffb8}
 .hero.has-weather{border-bottom-color:transparent}
-.hero.is-sunny{background:linear-gradient(118deg,#6f42ff,#9d7bff 78%)}
+.hero.is-sunny{background:linear-gradient(118deg,#8f1c26,#c74b43 78%)}
 .hero.is-cloudy{background:linear-gradient(118deg,#5b6072,#8b90a3 78%)}
 .hero.is-rain{background:linear-gradient(118deg,#2e3a56,#56698f 78%)}
 .hero.is-snow{background:linear-gradient(118deg,#8ba0bd,#c3cede 78%)}
 .hero.is-snow,.hero.is-snow h2,.hero.is-snow h2 span{color:#1d2740}
 .hero.is-snow .eyebrow{color:#1d2740b3}
 .hero.is-snow .weather-fallback{color:#1d2740a6;background:#1d274021}
+
+/* 서체 — 본문을 Pretendard로 통일 */
+body,button,input,textarea{font-family:'Pretendard Variable',Pretendard,'Noto Sans KR',sans-serif}
+.cover h1,.hero h2,.section-heading h3,.day-title,.event-copy h4,.modal-copy h3{font-family:'Pretendard Variable',Pretendard,'Noto Sans KR',sans-serif}
+
+/* 카드 안 시간 라벨과 중복되는 왼쪽 회색 시간 제거 */
+.event-time{display:none}
+
+/* 금색 포인트 — 메타 정보는 골드로 */
+.event-meta{color:#a8853b}
+.route-summary i{background:#f6ecd8;color:#a8853b}
+
+/* 커버 — 중국 딥레드 무드 */
+.cover{background:url('https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?auto=format&fit=crop&w=1200&q=85') center/cover;color:#f8efe4}
+.cover-shade{display:block;background:linear-gradient(180deg,#3d060bd9,#7a1018a3 45%,#26040af0)}
+.cover-top{color:#e8cf9f}
+.compass{color:#d9ae5f}
+.cover .eyebrow{color:#d9ae5f}
+.cover h1{color:#faf3e6}
+.cover h1 em{color:#e3b768}
+.cover .date{color:#e6d2ac;font-family:'DM Mono',monospace}
+.start{background:#b02a30;color:#fff;box-shadow:0 12px 30px #00000066}
+.cover-foot{color:#e8cf9fb3}

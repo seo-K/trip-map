@@ -214,7 +214,7 @@ function initAmap(events, dayKey) {
       if (!canvas) return;
       if (activeMap) activeMap.destroy();
       activeMap = new AMap.Map("amap-canvas", { zoom: 12, center: events[0][5], viewMode: "2D", showLabel: false });
-      const line = new AMap.Polyline({ path: events.map((e) => e[5]), strokeColor: "#55bf25", strokeWeight: 5, strokeOpacity: 0.95, lineJoin: "round", lineCap: "round" });
+      const line = new AMap.Polyline({ path: events.map((e) => e[5]), strokeColor: "#b02a30", strokeWeight: 5, strokeOpacity: 0.95, lineJoin: "round", lineCap: "round" });
       activeMap.add(line);
       const markers = events.map((e, i) => {
         const image = imagesFor(e)[0];
@@ -308,3 +308,22 @@ content.addEventListener("pointerup", (e) => {
 showDay("day1");
 tabs.forEach((t) => t.classList.toggle("active", t.dataset.tab === "day1"));
 loadWeather();
+
+// 커버 화면: 세션당 한 번만 보여주고, 작전 개시를 누르면 플래너로 진입한다.
+const cover = document.querySelector("#cover");
+const startBtn = document.querySelector("#startBtn");
+if (cover && startBtn) {
+  if (!sessionStorage.getItem("cover-seen")) {
+    cover.classList.remove("hidden");
+    document.querySelector("#planner").classList.add("hidden");
+  }
+  startBtn.addEventListener("click", () => {
+    sessionStorage.setItem("cover-seen", "1");
+    cover.classList.add("hidden");
+    document.querySelector("#planner").classList.remove("hidden");
+    window.scrollTo(0, 0);
+    // 숨겨진 상태에서 초기화된 지도는 크기가 0이므로 다시 렌더한다.
+    const activeTab = document.querySelector(".tab.active");
+    if (activeTab) selectTab(activeTab);
+  });
+}
