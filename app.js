@@ -262,9 +262,16 @@ const COPY_ICON = `<svg viewBox="0 0 24 24" width="12" height="12" fill="none" s
 function chineseNameRow(name) {
   return `<p class="chinese-name" data-copy="${name}">${name} <button class="copy-btn" aria-label="중국어 이름 복사">${COPY_ICON}</button></p>`;
 }
-// 한국 이름 옆의 작은 복사 버튼 — 누르면 중국어 이름이 복사된다.
-function nameCopyBtn(chineseName) {
-  return `<button class="copy-btn name-copy" data-copy="${chineseName}" aria-label="중국어 이름 복사">${COPY_ICON}</button>`;
+const TAXI_ICON = `<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14l-1-7H6l-1 7Z"/><path d="m7 10 1.5-4h7L17 10M3 17h2m14 0h2M7 17v2m10-2v2M8 13h.01M16 13h.01"/></svg>`;
+function destinationBtn() {
+  return `<button class="copy-btn destination-btn" aria-label="고덕지도에서 도착지로 설정">${TAXI_ICON}</button>`;
+}
+function bindDestination(el, coords, name) {
+  el.addEventListener("click", (event) => {
+    event.stopPropagation();
+    const to = coords ? `${coords[0]},${coords[1]},${encodeURIComponent(name)}` : `,,${encodeURIComponent(name)}`;
+    window.open(`https://uri.amap.com/navigation?to=${to}&mode=car&coordinate=gaode&src=qingdao-trip&callnative=1`, "_blank");
+  });
 }
 function bindCopy(el) {
   const text = el.dataset.copy;
@@ -297,14 +304,14 @@ function showDay(key) {
   content.innerHTML = `<div class="section-heading"><div><h3 class="day-title">${day.title}</h3><p class="day-sub">${day.sub}</p></div></div>${mapPanel(day)}<div class="schedule-label">일정 ${day.events.length}개</div><div class="timeline">${day.events
     .map((e, i) => {
       const info = getInfo(e);
-      return `<article class="event" id="schedule-${key}-${i}" data-day="${key}" data-event="${i}"><time class="event-time">${e[0]}</time><span class="event-dot">${i + 1}</span><div class="event-card"><div class="event-copy"><div class="event-label">${e[0]}</div><h4>${e[1]} ${nameCopyBtn(info[0])}</h4><p>${e[3]}</p><div class="event-meta">${e[6]}</div></div>${imageSlot(e[1], imagesFor(e)[0])}</div></article>`;
+      return `<article class="event" id="schedule-${key}-${i}" data-day="${key}" data-event="${i}"><time class="event-time">${e[0]}</time><span class="event-dot">${i + 1}</span><div class="event-card"><div class="event-copy"><div class="event-label">${e[0]}</div><h4>${e[1]} ${destinationBtn()}</h4><p>${e[3]}</p><div class="event-meta">${e[6]}</div></div>${imageSlot(e[1], imagesFor(e)[0])}</div></article>`;
     })
     .join("")}</div>`;
   content.querySelectorAll(".event").forEach((el) => {
     const event = trip.days[el.dataset.day].events[el.dataset.event];
     el.addEventListener("click", () => openModal(event));
-    const copyBtn = el.querySelector(".name-copy");
-    if (copyBtn) bindCopy(copyBtn);
+    const destination = el.querySelector(".destination-btn");
+    if (destination) bindDestination(destination, event[5], getInfo(event)[0]);
   });
   initAmap(day.events, key);
 }
