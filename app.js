@@ -62,6 +62,60 @@ const placeInfo = {
   "칭다오 공항 이동": ["青岛胶东国际机场", "青岛市胶州市胶东街道航安路"],
   "SC4617 · 산동항공": ["青岛胶东国际机场", "青岛市胶州市胶东街道航安路"],
 };
+const TRIP_DATES = { day1: "2026-09-11", day2: "2026-09-12", day3: "2026-09-13" };
+let weatherData = null;
+
+function weatherClass(code) {
+  if (code <= 2) return "is-sunny";
+  if ([3, 45, 48].includes(code)) return "is-cloudy";
+  if ([71, 73, 75, 77, 85, 86].includes(code)) return "is-snow";
+  if (code >= 51) return "is-rain";
+  return "is-cloudy";
+}
+function weatherIcon(cls) {
+  return { "is-sunny": "☀️", "is-cloudy": "☁️", "is-rain": "🌧️", "is-snow": "❄️" }[cls];
+}
+
+async function loadWeather() {
+  try {
+    const res = await fetch(
+      "https://api.open-meteo.com/v1/forecast?latitude=36.07&longitude=120.38&current=temperature_2m,precipitation,weathercode&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_sum&timezone=Asia%2FShanghai&forecast_days=16",
+    );
+    if (!res.ok) throw new Error("weather fetch failed");
+    weatherData = await res.json();
+    const active = document.querySelector(".tab.active");
+    renderWeather(active?.dataset.tab || "checklist");
+  } catch {
+    document.querySelector(".hero-weather")?.classList.add("hidden");
+  }
+}
+
+function renderWeather(tabKey) {
+  const widget = document.querySelector(".hero-weather");
+  const hero = document.querySelector(".hero");
+  if (!widget || !hero || !weatherData) return;
+  const date = TRIP_DATES[tabKey];
+  const dayIndex = date ? weatherData.daily.time.indexOf(date) : -1;
+  let temp, code, rainy;
+  // 여행일 예보가 아직 범위 밖이면 오늘 날씨로 대신 보여준다.
+  let fallback = false;
+  if (dayIndex >= 0) {
+    code = weatherData.daily.weathercode[dayIndex];
+    temp = `${Math.round(weatherData.daily.temperature_2m_min[dayIndex])}°/${Math.round(weatherData.daily.temperature_2m_max[dayIndex])}°`;
+    rainy = weatherData.daily.precipitation_sum[dayIndex] > 0;
+  } else {
+    fallback = !!date;
+    code = weatherData.current.weathercode;
+    temp = `${Math.round(weatherData.current.temperature_2m)}°`;
+    rainy = weatherData.current.precipitation > 0;
+  }
+  const cls = weatherClass(code);
+  widget.classList.remove("hidden");
+  widget.innerHTML = `<span class="weather-main">${rainy && cls !== "is-rain" ? "☔ " : ""}${weatherIcon(cls)} <b>${temp}</b></span>${fallback ? '<span class="weather-fallback">오늘 날씨</span>' : ""}`;
+  hero.classList.remove("is-sunny", "is-cloudy", "is-rain", "is-snow");
+  hero.classList.add("has-weather", cls);
+}
+
 const content = document.querySelector("#content");
 const tabs = document.querySelectorAll(".tab");
 const saved = JSON.parse(localStorage.getItem("qingdao-checklist") || "{}");
@@ -90,6 +144,24 @@ function showChecklist() {
 function getInfo(e) {
   return placeInfo[e[1]] || [e[1], "주소 확인 필요"];
 }
+function chineseNameRow(name) {
+  return `<p class="chinese-name" data-copy="${name}">${name} <button class="copy-btn" aria-label="중국어 이름 복사"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button></p>`;
+}
+function bindCopy(el) {
+  const text = el.dataset.copy;
+  el.addEventListener("click", async (event) => {
+    event.stopPropagation();
+    await navigator.clipboard?.writeText(text);
+    if (el.classList.contains("copied")) return;
+    const original = el.innerHTML;
+    el.classList.add("copied");
+    el.innerHTML = "복사됐어요 ✓";
+    setTimeout(() => {
+      el.classList.remove("copied");
+      el.innerHTML = original;
+    }, 1200);
+  });
+}
 function imagesFor(e) {
   return Array.isArray(e[2]) ? e[2] : e[2] ? [e[2]] : [];
 }
@@ -104,11 +176,17 @@ function showDay(key) {
   content.innerHTML = `<div class="section-heading"><div><h3 class="day-title">${day.title}</h3><p class="day-sub">${day.sub}</p></div></div>${mapPanel(day)}<div class="schedule-label">일정 ${day.events.length}개</div><div class="timeline">${day.events
     .map((e, i) => {
       const info = getInfo(e);
-      return `<article class="event" id="schedule-${key}-${i}" data-day="${key}" data-event="${i}"><time class="event-time">${e[0]}</time><span class="event-dot">${i + 1}</span><div class="event-card"><div class="event-copy"><div class="event-label">${e[0]}</div><h4>${e[1]}</h4><p class="chinese-name">${info[0]}</p><button class="address" data-address="${info[1]}">${info[1]} <span>↗</span></button><p>${e[3]}</p><div class="event-meta">${e[6]}</div></div>${imageSlot(e[1], imagesFor(e)[0])}</div></article>`;
+      return `<article class="event" id="schedule-${key}-${i}" data-day="${key}" data-event="${i}"><time class="event-time">${e[0]}</time><span class="event-dot">${i + 1}</span><div class="event-card"><div class="event-copy"><div class="event-label">${e[0]}</div><h4>${e[1]}</h4>${chineseNameRow(info[0])}<button class="address" data-address="${info[1]}">${info[1]} <span>↗</span></button><p>${e[3]}</p><div class="event-meta">${e[6]}</div></div>${imageSlot(e[1], imagesFor(e)[0])}</div></article>`;
     })
     .join("")}</div>`;
-  content.querySelectorAll(".event").forEach((el) => el.addEventListener("click", () => openModal(trip.days[el.dataset.day].events[el.dataset.event])));
-  content.querySelectorAll(".address").forEach((addressControl) => bindAddress(addressControl));
+  content.querySelectorAll(".event").forEach((el) => {
+    const event = trip.days[el.dataset.day].events[el.dataset.event];
+    el.addEventListener("click", () => openModal(event));
+    const addressBtn = el.querySelector(".address");
+    if (addressBtn) bindAddress(addressBtn, event[5], getInfo(event)[0]);
+    const nameEl = el.querySelector(".chinese-name");
+    if (nameEl) bindCopy(nameEl);
+  });
   initAmap(day.events, key);
 }
 
@@ -167,8 +245,9 @@ function openModal(e) {
   const info = getInfo(e),
     images = imagesFor(e);
   const gallery = images.length ? `<div class="modal-gallery">${images.map((url, i) => `<img class="gallery-image ${i ? "is-hidden" : ""}" src="${url}" alt="${e[1]}"/>`).join("")}<span class="image-count">1 / ${images.length}</span>${images.length > 1 ? '<button class="gallery-next" aria-label="다음 사진">›</button>' : ""}</div>` : `<div class="modal-gallery">${imageSlot(e[1])}<span class="image-count">1 / 1</span></div>`;
-  document.querySelector("#modalContent").innerHTML = `${gallery}<div class="modal-copy"><p class="eyebrow">${e[0]} · 일정 상세</p><h3>${e[1]}</h3><p class="chinese-name">${info[0]}</p><button class="address" data-address="${info[1]}">${info[1]} <span>↗</span></button><p>${e[3]}</p><div class="tip"><strong>${e[6]}</strong><br>${e[4]}</div></div>`;
-  bindAddress(document.querySelector("#modalContent .address"));
+  document.querySelector("#modalContent").innerHTML = `${gallery}<div class="modal-copy"><p class="eyebrow">${e[0]} · 일정 상세</p><h3>${e[1]}</h3>${chineseNameRow(info[0])}<button class="address" data-address="${info[1]}">${info[1]} <span>↗</span></button><p>${e[3]}</p><div class="tip"><strong>${e[6]}</strong><br>${e[4]}</div></div>`;
+  bindAddress(document.querySelector("#modalContent .address"), e[5], info[0]);
+  bindCopy(document.querySelector("#modalContent .chinese-name"));
   bindGallery();
   modal.showModal();
 }
@@ -184,7 +263,7 @@ function bindGallery() {
     document.querySelector(".image-count").textContent = `${nextIndex + 1} / ${photos.length}`;
   });
 }
-function bindAddress(el) {
+function bindAddress(el, coords, name) {
   let pressTimer;
   const address = el.dataset.address;
   el.addEventListener("pointerdown", () => {
@@ -201,7 +280,8 @@ function bindAddress(el) {
       return;
     }
     e.stopPropagation();
-    window.open(`https://uri.amap.com/marker?position=&name=${encodeURIComponent(address)}&src=qingdao-trip&coordinate=gaode&callnative=1`, "_blank");
+    const to = coords ? `${coords[0]},${coords[1]},${encodeURIComponent(name || address)}` : `,,${encodeURIComponent(address)}`;
+    window.open(`https://uri.amap.com/navigation?to=${to}&mode=car&coordinate=gaode&src=qingdao-trip&callnative=1`, "_blank");
   });
 }
 document.querySelector("#closeModal").onclick = () => modal.close();
@@ -211,6 +291,7 @@ modal.addEventListener("click", (e) => {
 function selectTab(tab) {
   tabs.forEach((t) => t.classList.toggle("active", t === tab));
   tab.dataset.tab === "checklist" ? showChecklist() : showDay(tab.dataset.tab);
+  renderWeather(tab.dataset.tab);
 }
 tabs.forEach((tab) => tab.addEventListener("click", () => selectTab(tab)));
 let swipeStartX = 0;
@@ -226,3 +307,4 @@ content.addEventListener("pointerup", (e) => {
 });
 showDay("day1");
 tabs.forEach((t) => t.classList.toggle("active", t.dataset.tab === "day1"));
+loadWeather();
