@@ -1,329 +1,48 @@
-const trip = {
-  checklist: [
-    ["필수 서류 · 환전", ["여권", "비자 · 입국 서류 확인", "위챗페이 / 알리페이 등록", "위안화 환전", "여행자 보험"]],
-    ["전자기기", ["보조배터리", "eSIM · 데이터 연결", "충전 케이블", "여행용 어댑터"]],
-    ["의류 · 세면도구", ["기본 착장 · 바람막이", "세면도구", "숙취해소제", "정장제 · 상비약"]],
-  ],
-  days: {
-    day1: {
-      title: "1일차",
-      sub: "입국 · 호텔 체크인",
-      events: [
-        ["22:55", "SC4620 · 칭다오 공항", "images/airport.jpg", "22:55 출발 · 23:40 칭다오 공항 도착", "입국 수속 후 위챗페이 또는 알리페이를 켜두세요.", [120.392, 36.267], "비행 45분 · 항공권 확인"],
-        ["23:40", "칭다오 5·4광장 MIXC 루이마이 호텔", "images/hotel.jpg", "공항에서 호텔로 이동 후 체크인", "호텔 주소: 江西路35号戊4号楼. 늦은 시간 도착이므로 이동 방법을 미리 확인해 두세요.", [120.384, 36.083], "체크인 14:00~ · 체크아웃 12:00"],
-      ],
-    },
-    day2: {
-      title: "2일차",
-      sub: "시장 · 맥주 · 야경",
-      events: [
-        ["08:30", "해박하 조시 (海泊河早市)", "images/haibohe-market.jpg", "현지 아침시장에서 가볍게 하루를 시작합니다.", "06:00부터 08:30까지 운영하는 이른 시장이라 08:30 일정은 막바지예요.", [120.354, 36.1], "06:00–08:30 · 입장 무료"],
-        ["10:30", "칭다오 맥주박물관", "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=900&q=80", "신선한 원장맥주 시음과 기념품 쇼핑.", "9월은 08:00–18:30 운영, 17:30 입장 마감 기준입니다.", [120.348, 36.089], "08:00–18:30 · 약 ¥60부터"],
-        ["12:30", "중산로", "https://newbbs-fd.zol-img.com.cn/t_s1200x5000/g7/M00/0C/02/ChMkK2Xy-NuIHAEhAAPKTgyeEfsAAbxhQPk2BwAA8pm423.jpg", "칭다오 구시가지 거리 산책.", "유럽풍 건물과 상점이 이어지는 무료 산책 코스입니다.", [120.319, 36.074], "상시 · 무료"],
-        ["13:00", "메이다얼 · 식사", "images/meidaer.jpg", "중산로 근처에서 점심 식사.", "대기 시간이 있으면 다음 아이스크림 일정과 조정하세요.", [120.32, 36.075], "점심 · 1인 약 ¥30–60"],
-        ["14:00", "야인선생 아이스크림", "images/yeren-icecream.jpg", "중산로 산책 중 아이스크림 휴식.", "사진을 남기기 좋은 잠깐의 쉼표예요.", [120.322, 36.076], "1개 약 ¥15–30"],
-        ["16:30", "MIXC Mall", "images/mixc-mall.jpg", "쇼핑과 휴식 시간.", "5·4광장과 가까워 저녁 동선이 좋습니다.", [120.409, 36.067], "보통 10:00–22:00 · 입장 무료"],
-        ["19:00", "타이동 야시장", "https://aos-comment.amap.com/B0JGLUEK73/comment/4E58CD98_EB96_4717_8252_B7BD2298C781_L0_001_2000_150_1757152896508_57208115.jpg", "현지 먹거리와 야시장 구경.", "인기 가게는 줄이 길 수 있어요.", [120.364, 36.092], "저녁 중심 · 음식 약 ¥10–50"],
-        ["21:30", "5·4광장 야경", "https://ak-d.tripcdn.com/images/1mi5j224x98azf0toF6F3.jpg?proc=source%2Ftrip", "칭다오 대표 야경 스폿.", "바람이 차가울 수 있어 겉옷을 챙기세요.", [120.414, 36.066], "상시 · 무료"],
-        ["22:30", "하이디라오", "images/haidilao.jpg", "늦은 저녁 또는 야식.", "마감 시간을 미리 확인해 두세요.", [120.409, 36.067], "보통 심야 운영 · 1인 약 ¥80–150"],
-      ],
-    },
-    day3: {
-      title: "3일차",
-      sub: "장보기 · 전망 · 귀국",
-      events: [
-        ["09:00", "따룬파 슈퍼마켓 · 닝샤점", "images/dalunfa.jpg", "기념품과 마지막 장보기.", "맥주와 액체류는 위탁 수하물 규정을 확인하세요.", [120.392831, 36.081544], "08:00–22:00 · 입장 무료"],
-        ["10:30", "호텔 체크아웃", "images/hotel.jpg", "짐을 챙기고 체크아웃합니다.", "공항 이동 전 호텔 보관 서비스를 확인하세요.", [120.384, 36.083], "12:00 전 체크아웃"],
-        ["11:30", "MIXC Mall", "images/mixc-mall.jpg", "점심 전 마지막 쇼핑 또는 휴식.", "시간이 부족하면 이 일정을 생략할 수 있어요.", [120.409, 36.067], "보통 10:00–22:00 · 입장 무료"],
-        ["13:00", "신호산 또는 소어산 공원", "https://n.sinaimg.cn/spider20210825/191/w1024h767/20210825/2998-910539947a1a24554881e1d498f89e46.jpg", "칭다오 빨간 지붕 전경을 담는 전망 산책.", "두 장소 중 컨디션과 이동 동선에 맞춰 하나를 선택하세요.", [120.33, 36.071], "신호산 08:00–17:30 · ¥5부터"],
-        ["14:00", "1/4 Photo · 사진", "", "여행 마지막 사진 촬영.", "공항 출발 전 시간 여유를 꼭 확보하세요.", [120.318, 36.073], "가격·예약은 매장 확인"],
-        ["15:20", "칭다오 공항 이동", "images/airport.jpg", "15:20~15:30 사이 공항으로 출발.", "출국 수속과 면세점 시간을 고려하세요.", [120.392, 36.267], "공항 도착 권장 16:30 전"],
-        ["18:30", "SC4617 · 산동항공", "images/airport.jpg", "18:30 출발 · 20:45 도착 예정", "탑승구와 수하물을 최종 확인하세요.", [120.392, 36.267], "비행 2시간 15분 · 항공권 확인"],
-      ],
-    },
-  },
-};
-const placeInfo = {
-  "SC4620 · 칭다오 공항": ["青岛胶东国际机场", "青岛市胶州市胶东街道航安路"],
-  "칭다오 5·4광장 MIXC 루이마이 호텔": ["青岛五四广场万象城芮迈酒店", "青岛市市南区江西路35号戊4号楼"],
-  "해박하 조시 (海泊河早市)": ["海泊河早市", "青岛市市北区海慈医院北门附近"],
-  "칭다오 맥주박물관": ["青岛啤酒博物馆", "青岛市市北区登州路56号"],
-  중산로: ["中山路", "青岛市市南区中山路"],
-  "메이다얼 · 식사": ["美达尔烧烤", "青岛市市南区中山路周边"],
-  "야인선생 아이스크림": ["野人先生", "青岛市市南区中山路周边"],
-  "MIXC Mall": ["青岛万象城", "青岛市市南区山东路6号"],
-  "타이동 야시장": ["台东步行街", "青岛市市北区台东三路"],
-  "5·4광장 야경": ["五四广场", "青岛市市南区东海西路"],
-  하이디라오: ["海底捞火锅（青岛万象城店）", "青岛市市南区山东路6号青岛万象城"],
-  "따룬파 슈퍼마켓 · 닝샤점": ["大润发（宁夏店）", "青岛市市南区宁夏路162号"],
-  "호텔 체크아웃": ["青岛五四广场万象城芮迈酒店", "青岛市市南区江西路35号戊4号楼"],
-  "신호산 또는 소어산 공원": ["信号山公园 / 小鱼山公园", "青岛市市南区龙山路17号 / 福山支路24号"],
-  "1/4 Photo · 사진": ["1/4 PHOTO", "정확한 중국어 주소 확인 필요"],
-  "칭다오 공항 이동": ["青岛胶东国际机场", "青岛市胶州市胶东街道航安路"],
-  "SC4617 · 산동항공": ["青岛胶东国际机场", "青岛市胶州市胶东街道航安路"],
-};
-const TRIP_DATES = { day1: "2026-09-11", day2: "2026-09-12", day3: "2026-09-13" };
-let weatherData = null;
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#871f26" />
+  <title>칭다오 작전 지침서</title>
+  <link rel="preconnect" href="https://images.unsplash.com" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="route.css" />
+  <link rel="stylesheet" href="triple.css" />
+  <link rel="stylesheet" href="refine.css" />
+  <link rel="stylesheet" href="gallery.css" />
+</head>
+<body>
+  <main id="app">
+    <section class="cover hidden" id="cover">
+      <div class="cover-shade"></div>
+      <div class="cover-top"><span class="compass">✦</span><span>TRAVEL BRIEFING · 2026</span></div>
+      <div class="cover-copy">
+        <p class="eyebrow">QINGDAO, CHINA</p>
+        <h1>칭다오<br><em>비밀 작전</em><br>지침서</h1>
+        <p class="date">2026.09.11 — 09.13</p>
+      </div>
+      <button class="start" id="startBtn">작전 개시 <span>→</span></button>
+      <p class="cover-foot">2박 3일 · 바다와 맥주의 도시</p>
+    </section>
 
-function weatherClass(code) {
-  if (code <= 2) return "is-sunny";
-  if ([3, 45, 48].includes(code)) return "is-cloudy";
-  if ([71, 73, 75, 77, 85, 86].includes(code)) return "is-snow";
-  if (code >= 51) return "is-rain";
-  return "is-cloudy";
-}
-function weatherIcon(cls) {
-  return { "is-sunny": "☀️", "is-cloudy": "☁️", "is-rain": "🌧️", "is-snow": "❄️" }[cls];
-}
-
-async function loadWeather() {
-  try {
-    const res = await fetch(
-      "https://api.open-meteo.com/v1/forecast?latitude=36.07&longitude=120.38&current=temperature_2m,precipitation,weathercode&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_sum&timezone=Asia%2FShanghai&forecast_days=16",
-    );
-    if (!res.ok) throw new Error("weather fetch failed");
-    weatherData = await res.json();
-    const active = document.querySelector(".tab.active");
-    renderWeather(active?.dataset.tab || "checklist");
-  } catch {
-    document.querySelector(".hero-weather")?.classList.add("hidden");
-  }
-}
-
-function renderWeather(tabKey) {
-  const widget = document.querySelector(".hero-weather");
-  const hero = document.querySelector(".hero");
-  if (!widget || !hero || !weatherData) return;
-  const date = TRIP_DATES[tabKey];
-  const dayIndex = date ? weatherData.daily.time.indexOf(date) : -1;
-  let temp, code, rainy;
-  // 여행일 예보가 아직 범위 밖이면 오늘 날씨로 대신 보여준다.
-  let fallback = false;
-  if (dayIndex >= 0) {
-    code = weatherData.daily.weathercode[dayIndex];
-    temp = `${Math.round(weatherData.daily.temperature_2m_min[dayIndex])}°/${Math.round(weatherData.daily.temperature_2m_max[dayIndex])}°`;
-    rainy = weatherData.daily.precipitation_sum[dayIndex] > 0;
-  } else {
-    fallback = !!date;
-    code = weatherData.current.weathercode;
-    temp = `${Math.round(weatherData.current.temperature_2m)}°`;
-    rainy = weatherData.current.precipitation > 0;
-  }
-  const cls = weatherClass(code);
-  widget.classList.remove("hidden");
-  widget.innerHTML = `<span class="weather-main">${rainy && cls !== "is-rain" ? "☔ " : ""}${weatherIcon(cls)} <b>${temp}</b></span>${fallback ? '<span class="weather-fallback">오늘 날씨</span>' : ""}`;
-  hero.classList.remove("is-sunny", "is-cloudy", "is-rain", "is-snow");
-  hero.classList.add("has-weather", cls);
-}
-
-const content = document.querySelector("#content");
-const tabs = document.querySelectorAll(".tab");
-const saved = JSON.parse(localStorage.getItem("qingdao-checklist") || "{}");
-let activeMap;
-
-function showChecklist() {
-  content.innerHTML = `<div class="section-heading"><div><h3>여행 준비</h3><p class="day-sub">출발 전에 하나씩 체크해요</p></div></div><div class="notice">여권과 모바일 결제 등록은 출발 전날 다시 한번 확인해요.</div>${trip.checklist
-    .map(
-      ([category, items], i) =>
-        `<details class="check-group" ${i === 0 ? "open" : ""}><summary>${category}<span>${items.length}</span></summary>${items
-          .map((item, n) => {
-            const key = `${i}-${n}`;
-            return `<label class="check-item"><input type="checkbox" data-key="${key}" ${saved[key] ? "checked" : ""}/><span>${item}</span></label>`;
-          })
-          .join("")}</details>`,
-    )
-    .join("")}`;
-  content.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("change", (e) => {
-      saved[e.target.dataset.key] = e.target.checked;
-      localStorage.setItem("qingdao-checklist", JSON.stringify(saved));
-    }),
-  );
-}
-
-function getInfo(e) {
-  return placeInfo[e[1]] || [e[1], "주소 확인 필요"];
-}
-function chineseNameRow(name) {
-  return `<p class="chinese-name" data-copy="${name}">${name} <button class="copy-btn" aria-label="중국어 이름 복사"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button></p>`;
-}
-function bindCopy(el) {
-  const text = el.dataset.copy;
-  el.addEventListener("click", async (event) => {
-    event.stopPropagation();
-    await navigator.clipboard?.writeText(text);
-    if (el.classList.contains("copied")) return;
-    const original = el.innerHTML;
-    el.classList.add("copied");
-    el.innerHTML = "복사됐어요 ✓";
-    setTimeout(() => {
-      el.classList.remove("copied");
-      el.innerHTML = original;
-    }, 1200);
-  });
-}
-function imagesFor(e) {
-  return Array.isArray(e[2]) ? e[2] : e[2] ? [e[2]] : [];
-}
-function imageSlot(name, url = "") {
-  return url ? `<div class="image-slot has-image"><img src="${url}" alt="${name}"/><small>${name}</small></div>` : `<div class="image-slot"><span>사진 추가</span><small>${name}</small></div>`;
-}
-function mapPanel(day) {
-  return `<section class="map-panel"><div class="map-topline"><b>오늘의 동선</b><span>${day.events.length}곳 방문</span></div><div id="amap-canvas"><div class="map-loading">지도 불러오는 중</div></div><div class="route-summary">${day.events.map((e, i) => `<span><i>${i + 1}</i>${e[1]}</span>`).join("<b>→</b>")}</div></section>`;
-}
-function showDay(key) {
-  const day = trip.days[key];
-  content.innerHTML = `<div class="section-heading"><div><h3 class="day-title">${day.title}</h3><p class="day-sub">${day.sub}</p></div></div>${mapPanel(day)}<div class="schedule-label">일정 ${day.events.length}개</div><div class="timeline">${day.events
-    .map((e, i) => {
-      const info = getInfo(e);
-      return `<article class="event" id="schedule-${key}-${i}" data-day="${key}" data-event="${i}"><time class="event-time">${e[0]}</time><span class="event-dot">${i + 1}</span><div class="event-card"><div class="event-copy"><div class="event-label">${e[0]}</div><h4>${e[1]}</h4>${chineseNameRow(info[0])}<button class="address" data-address="${info[1]}">${info[1]} <span>↗</span></button><p>${e[3]}</p><div class="event-meta">${e[6]}</div></div>${imageSlot(e[1], imagesFor(e)[0])}</div></article>`;
-    })
-    .join("")}</div>`;
-  content.querySelectorAll(".event").forEach((el) => {
-    const event = trip.days[el.dataset.day].events[el.dataset.event];
-    el.addEventListener("click", () => openModal(event));
-    const addressBtn = el.querySelector(".address");
-    if (addressBtn) bindAddress(addressBtn, event[5], getInfo(event)[0]);
-    const nameEl = el.querySelector(".chinese-name");
-    if (nameEl) bindCopy(nameEl);
-  });
-  initAmap(day.events, key);
-}
-
-function loadAmap() {
-  if (window.AMap) return Promise.resolve(window.AMap);
-  if (window.__amapLoading) return window.__amapLoading;
-  window.__amapLoading = new Promise((resolve, reject) => {
-    const script = document.createElement("script");
-    script.src = `https://webapi.amap.com/maps?v=2.0&key=${window.AMAP_CONFIG?.key || ""}&plugin=AMap.Driving`;
-    script.onload = () => resolve(window.AMap);
-    script.onerror = reject;
-    document.head.append(script);
-  });
-  return window.__amapLoading;
-}
-
-function initAmap(events, dayKey) {
-  if (!window.AMAP_CONFIG?.key) {
-    document.querySelector("#amap-canvas").innerHTML = '<div class="map-loading">고덕지도 설정을 확인해 주세요</div>';
-    return;
-  }
-  loadAmap()
-    .then((AMap) => {
-      const canvas = document.querySelector("#amap-canvas");
-      if (!canvas) return;
-      if (activeMap) activeMap.destroy();
-      activeMap = new AMap.Map("amap-canvas", { zoom: 12, center: events[0][5], viewMode: "2D", showLabel: false });
-      const line = new AMap.Polyline({ path: events.map((e) => e[5]), strokeColor: "#b02a30", strokeWeight: 5, strokeOpacity: 0.95, lineJoin: "round", lineCap: "round" });
-      activeMap.add(line);
-      const markers = events.map((e, i) => {
-        const image = imagesFor(e)[0];
-        const marker = new AMap.Marker({ position: e[5], content: `<div class="amap-pin">${image ? `<img src="${image}" alt=""/>` : `<span>${i + 1}</span>`}<b>${i + 1}</b></div>`, offset: new AMap.Pixel(-20, -36), title: e[1] });
-        marker.on("click", () => document.querySelector(`#schedule-${dayKey}-${i}`)?.scrollIntoView({ behavior: "smooth", block: "center" }));
-        return marker;
-      });
-      activeMap.add(markers);
-      activeMap.setFitView([...markers, line], [34, 26, 34, 26]);
-      if (events.length > 1 && AMap.Driving) {
-        const driving = new AMap.Driving({ policy: AMap.DrivingPolicy.LEAST_TIME });
-        driving.search(events[0][5], events.at(-1)[5], { waypoints: events.slice(1, -1).map((e) => e[5]) }, (status, result) => {
-          if (status === "complete" && result.routes?.[0]) {
-            const path = result.routes[0].steps.flatMap((step) => step.path);
-            line.setPath(path);
-          }
-        });
-      }
-    })
-    .catch(() => {
-      const el = document.querySelector("#amap-canvas");
-      if (el) el.innerHTML = '<div class="map-loading">지도를 불러오지 못했습니다</div>';
-    });
-}
-
-const modal = document.querySelector("#detailModal");
-function openModal(e) {
-  const info = getInfo(e),
-    images = imagesFor(e);
-  const gallery = images.length ? `<div class="modal-gallery">${images.map((url, i) => `<img class="gallery-image ${i ? "is-hidden" : ""}" src="${url}" alt="${e[1]}"/>`).join("")}<span class="image-count">1 / ${images.length}</span>${images.length > 1 ? '<button class="gallery-next" aria-label="다음 사진">›</button>' : ""}</div>` : `<div class="modal-gallery">${imageSlot(e[1])}<span class="image-count">1 / 1</span></div>`;
-  document.querySelector("#modalContent").innerHTML = `${gallery}<div class="modal-copy"><p class="eyebrow">${e[0]} · 일정 상세</p><h3>${e[1]}</h3>${chineseNameRow(info[0])}<button class="address" data-address="${info[1]}">${info[1]} <span>↗</span></button><p>${e[3]}</p><div class="tip"><strong>${e[6]}</strong><br>${e[4]}</div></div>`;
-  bindAddress(document.querySelector("#modalContent .address"), e[5], info[0]);
-  bindCopy(document.querySelector("#modalContent .chinese-name"));
-  bindGallery();
-  modal.showModal();
-}
-function bindGallery() {
-  const next = document.querySelector(".gallery-next");
-  if (!next) return;
-  next.addEventListener("click", () => {
-    const photos = [...document.querySelectorAll(".gallery-image")];
-    const visible = photos.findIndex((photo) => !photo.classList.contains("is-hidden"));
-    photos[visible].classList.add("is-hidden");
-    const nextIndex = (visible + 1) % photos.length;
-    photos[nextIndex].classList.remove("is-hidden");
-    document.querySelector(".image-count").textContent = `${nextIndex + 1} / ${photos.length}`;
-  });
-}
-function bindAddress(el, coords, name) {
-  let pressTimer;
-  const address = el.dataset.address;
-  el.addEventListener("pointerdown", () => {
-    pressTimer = setTimeout(async () => {
-      await navigator.clipboard?.writeText(address);
-      el.classList.add("copied");
-      el.textContent = "주소가 복사됐어요";
-    }, 550);
-  });
-  ["pointerup", "pointerleave", "pointercancel"].forEach((type) => el.addEventListener(type, () => clearTimeout(pressTimer)));
-  el.addEventListener("click", (e) => {
-    if (el.classList.contains("copied")) {
-      el.classList.remove("copied");
-      return;
-    }
-    e.stopPropagation();
-    const to = coords ? `${coords[0]},${coords[1]},${encodeURIComponent(name || address)}` : `,,${encodeURIComponent(address)}`;
-    window.open(`https://uri.amap.com/navigation?to=${to}&mode=car&coordinate=gaode&src=qingdao-trip&callnative=1`, "_blank");
-  });
-}
-document.querySelector("#closeModal").onclick = () => modal.close();
-modal.addEventListener("click", (e) => {
-  if (e.target === modal) modal.close();
-});
-function selectTab(tab) {
-  tabs.forEach((t) => t.classList.toggle("active", t === tab));
-  tab.dataset.tab === "checklist" ? showChecklist() : showDay(tab.dataset.tab);
-  renderWeather(tab.dataset.tab);
-}
-tabs.forEach((tab) => tab.addEventListener("click", () => selectTab(tab)));
-let swipeStartX = 0;
-content.addEventListener("pointerdown", (e) => {
-  swipeStartX = e.clientX;
-});
-content.addEventListener("pointerup", (e) => {
-  const delta = e.clientX - swipeStartX;
-  if (Math.abs(delta) < 70) return;
-  const active = [...tabs].findIndex((t) => t.classList.contains("active"));
-  const next = Math.max(0, Math.min(tabs.length - 1, active + (delta < 0 ? 1 : -1)));
-  if (next !== active) selectTab(tabs[next]);
-});
-showDay("day1");
-tabs.forEach((t) => t.classList.toggle("active", t.dataset.tab === "day1"));
-loadWeather();
-
-// 커버 화면: 세션당 한 번만 보여주고, 작전 개시를 누르면 플래너로 진입한다.
-const cover = document.querySelector("#cover");
-const startBtn = document.querySelector("#startBtn");
-if (cover && startBtn) {
-  if (!sessionStorage.getItem("cover-seen")) {
-    cover.classList.remove("hidden");
-    document.querySelector("#planner").classList.add("hidden");
-  }
-  startBtn.addEventListener("click", () => {
-    sessionStorage.setItem("cover-seen", "1");
-    cover.classList.add("hidden");
-    document.querySelector("#planner").classList.remove("hidden");
-    window.scrollTo(0, 0);
-    // 숨겨진 상태에서 초기화된 지도는 크기가 0이므로 다시 렌더한다.
-    const activeTab = document.querySelector(".tab.active");
-    if (activeTab) selectTab(activeTab);
-  });
-}
+    <section class="planner" id="planner" aria-live="polite">
+      <header class="hero">
+        <div><p class="eyebrow">QINGDAO · SEP 11—13</p><h2>칭다오 <span>여행</span></h2></div>
+        <div class="hero-weather hidden" aria-label="칭다오 날씨"></div>
+      </header>
+      <nav class="tabs" aria-label="여행 일정 탭">
+        <button class="tab active" data-tab="checklist">소개</button>
+        <button class="tab" data-tab="day1">1일차</button>
+        <button class="tab" data-tab="day2">2일차</button>
+        <button class="tab" data-tab="day3">3일차</button>
+      </nav>
+      <div id="content"></div>
+    </section>
+  </main>
+  <dialog id="detailModal"><div class="sheet-handle" aria-hidden="true"></div><button class="modal-close" id="closeModal" aria-label="닫기">×</button><div id="modalContent"></div></dialog>
+  <script src="amap.config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
