@@ -9,7 +9,7 @@
 body {
   background: #f7f7f8;
   color: var(--ink);
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: var(--font-family);
 }
 .cover {
   background: #fff;
@@ -33,7 +33,7 @@ body {
   color: #b02a30;
 }
 .cover h1 {
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: var(--font-family);
   font-size: 38px;
   letter-spacing: -2.5px;
   line-height: 1.22;
@@ -44,7 +44,7 @@ body {
 }
 .date {
   color: #777;
-  font-family: "Noto Sans KR";
+  font-family: var(--font-family);
   font-size: 13px;
 }
 .start {
@@ -66,7 +66,7 @@ body {
 }
 .hero .eyebrow {
   color: #777;
-  font-family: "Noto Sans KR";
+  font-family: var(--font-family);
   letter-spacing: 0;
 }
 .hero h2 {
@@ -74,7 +74,7 @@ body {
 }
 .hero h2 span {
   color: #202124;
-  font-family: "Noto Sans KR";
+  font-family: var(--font-family);
   font-style: normal;
 }
 .profile {
@@ -106,7 +106,7 @@ body {
 }
 .section-heading h3,
 .day-title {
-  font-family: "Noto Sans KR";
+  font-family: var(--font-family);
   font-size: 22px;
   font-weight: 800;
   letter-spacing: -1.4px;
@@ -186,7 +186,7 @@ body {
   transform: rotate(-45deg);
   background: #b02a30;
   color: white;
-  font: 700 12px "DM Mono";
+  font: 700 12px var(--font-family);
   box-shadow: 0 3px 8px #871f2666;
 }
 .amap-pin span {
@@ -254,7 +254,7 @@ body {
   height: 14px;
   background: #b02a30;
   color: #fff;
-  font: 8px "DM Mono";
+  font: 8px var(--font-family);
   border: 0;
 }
 .event-card {

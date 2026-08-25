@@ -4,149 +4,37 @@ const trip = {
       title: "1일차",
       sub: "입국 · 호텔 체크인",
       events: [
-        [
-          "22:55",
-          "SC4620 · 칭다오 공항",
-          "images/airport.jpg",
-          "22:55 출발 · 23:40 칭다오 공항 도착",
-          "조용히 입국 수속하기",
-          [120.0934, 36.3623],
-          "비행 45분 · 항공권 확인",
-        ],
-        [
-          "23:40",
-          "호텔",
-          "images/hotel.jpg",
-          "공항에서 호텔로 이동 후 체크인",
-          "호텔 주소: 江西路35号戊4号楼. 青岛五四广场万象城 芮迈酒店",
-          [120.3798, 36.0698],
-          "체크인 14:00~ · 체크아웃 12:00",
-        ],
+        ["22:55", "SC4620 · 칭다오 공항", "images/airport.jpg", "22:55 출발 · 23:40 칭다오 공항 도착", "조용히 입국 수속하기", [120.0934, 36.3623], "비행 45분 · 항공권 확인"],
+        ["23:40", "호텔", "images/hotel.jpg", "공항에서 호텔로 이동 후 체크인", "호텔 주소: 江西路35号戊4号楼. 青岛五四广场万象城 芮迈酒店", [120.3798, 36.0698], "체크인 14:00~ · 체크아웃 12:00"],
       ],
     },
     day2: {
       title: "2일차",
-      sub: "시장 · 맥주 · 야경",
+      sub: "칭다오 하루만에 끝내기",
       events: [
         ["08:30", "호텔", "images/hotel.jpg", "호텔 출발", "", [120.3798, 36.0698], ""],
-        [
-          "09:00",
-          "해박하 아침시장 (海泊河早市)",
-          "images/haibohe-market.jpg",
-          "현지 아침시장",
-          "산동만두, 면 등 조식 및 과일 구매",
-          [120.3597, 36.0948],
-          "06:00–11:00",
-        ],
-        [
-          "10:30",
-          "칭다오 맥주박물관",
-          "images/beer-museum.jpg",
-          "신선한 원장맥주 시음과 기념품 쇼핑.",
-          "9월은 08:00–18:30 운영, 17:30 입장 마감 기준입니다.",
-          [120.3477, 36.0792],
-          "운영 시간 :: 08:00–18:30 · 입장료 13,000원부터",
-        ],
-        [
-          "12:30",
-          "중산로",
-          "https://newbbs-fd.zol-img.com.cn/t_s1200x5000/g7/M00/0C/02/ChMkK2Xy-NuIHAEhAAPKTgyeEfsAAbxhQPk2BwAA8pm423.jpg",
-          "독일 조계지 시절부터 발전한 역사적인 거리",
-          "유럽풍 건물과 중국식 상점이 함께 있어 옛 칭다오 분위기를 느끼기 좋음",
-          [120.3187, 36.07],
-          "상시 · 무료",
-        ],
-        [
-          "13:00",
-          "메이다얼 · 식사",
-          "images/meidaer.jpg",
-          "美达尔烧烤海鲜家常菜(中山路店) 중산로 근처에서 점심 식사.",
-          "가지튀김 바지락볶음",
-          [120.3183, 36.0692],
-          "점심",
-        ],
-        [
-          "14:00",
-          "야인선생 아이스크림",
-          "images/yeren-icecream.jpg",
-          "野人先生现做冰淇",
-          "피스타치오, 헤이즐넛 초콜렛, 쌀 맛 등",
-          [120.319, 36.0685],
-          "1개 약 6,000원",
-        ],
-        [
-          "16:30",
-          "MIX Mall",
-          "images/mixc-mall.jpg",
-          "쇼핑과 휴식 시간.",
-          "미니소, 팝마트, 루이싱, 차지, 몰리티, 라임주, 홀리랜드, 라이프슈퍼",
-          [120.3775, 36.0673],
-          "영업시간 :: 10:00–22:00",
-        ],
-        [
-          "19:00",
-          "타이동 야시장",
-          "https://aos-comment.amap.com/B0JGLUEK73/comment/4E58CD98_EB96_4717_8252_B7BD2298C781_L0_001_2000_150_1757152896508_57208115.jpg",
-          "현지 먹거리와 야시장 구경.",
-          "꿔바로우, 맥주 주식시장",
-          [120.3576, 36.0815],
-          "저녁 간식",
-        ],
-        [
-          "21:30",
-          "5·4광장 야경",
-          "https://ak-d.tripcdn.com/images/1mi5j224x98azf0toF6F3.jpg?proc=source%2Ftrip",
-          "칭다오 대표 야경 스폿 (오월의 바람)).",
-          "1999년에 5·4운동(1919년)을 기념해 조성됨",
-          [120.3805, 36.0648],
-          "",
-        ],
-        ["22:30", "하이디라오", "images/haidilao.jpg", "늦은 저녁 또는 야식.", "마감 시간을 미리 확인해 두세요.", [120.3775, 36.0673], "1인 약 20,000원"],
+        ["09:00", "해박하 아침시장 (海泊河早市)", "images/haibohe-market.jpg", "현지 아침시장 털기", "산동만두, 면 등 조식 및 과일 구매", [120.3597, 36.0948], "06:00–11:00 아침식사"],
+        ["10:30", "칭다오 맥주박물관", "images/beer-museum.jpg", "인생 맥주 칭다오 공장 맥주. 마라땅콩도 털어오기.", "취하기 않기. 단체사진 남기기", [120.3477, 36.0792], "운영 시간 :: 08:00–17:30 · 입장료 13,000원부터"],
+        ["12:30", "중산로", "https://newbbs-fd.zol-img.com.cn/t_s1200x5000/g7/M00/0C/02/ChMkK2Xy-NuIHAEhAAPKTgyeEfsAAbxhQPk2BwAA8pm423.jpg", "독일 조계지 시절부터 발전한 역사적인 거리", "유럽풍 건물과 중국식 상점이 함께 있어 옛 칭다오 분위기를 느끼기 좋다는데, 모르겠고 구경할거 많은듯", [120.3187, 36.07], "여기 나도 안가봄"],
+        ["13:00", "메이다얼 · 식사", "images/meidaer.jpg", "美达尔烧烤海鲜家常菜(中山路店) 한국인 맛집.", "가지튀김 바지락볶음 먹고 칭다오 맥주 마시기", [120.3183, 36.0692], "점심"],
+        ["14:00", "야인선생 아이스크림", "images/yeren-icecream.jpg", "野人先生现做冰淇", "피스타치오, 헤이즐넛 초콜렛, 쌀 맛 아이스크림 맛있음 비쌈", [120.319, 36.0685], "1개 약 6,000원"],
+        ["16:30", "MIX Mall", "images/mixc-mall.jpg", "쇼핑과 휴식 시간.", "미니소, 팝마트, 루이싱, 차지, 몰리티, 라임주, 홀리랜드, 라이프슈퍼", [120.3775, 36.0673], "영업시간 :: 10:00–22:00"],
+        ["19:00", "타이동 야시장", "https://aos-comment.amap.com/B0JGLUEK73/comment/4E58CD98_EB96_4717_8252_B7BD2298C781_L0_001_2000_150_1757152896508_57208115.jpg", "현지 먹거리와 야시장 구경.", "꿔바로우, 오징어구이, 맥주 주식시장", [120.3576, 36.0815], "저녁 간식"],
+        ["21:30", "5·4광장 야경", "https://ak-d.tripcdn.com/images/1mi5j224x98azf0toF6F3.jpg?proc=source%2Ftrip", "칭다오 대표 야경 스폿 (오월의 바람).", "1999년에 5·4운동(1919년)을 기념해 조성됨", [120.3805, 36.0648], "사진 잘나오고 야경 예쁨"],
+        ["22:30", "하이디라오", "images/haidilao.jpg", "늦은 저녁 또는 야식.", "마감 시간을 미리 확인해 두세요.", [120.3775, 36.0673], "면 누가 돌릴거냐"],
       ],
     },
     day3: {
       title: "3일차",
       sub: "장보기 · 전망 · 귀국",
       events: [
-        [
-          "09:00",
-          "따룬파 슈퍼마켓 · 닝샤점",
-          "images/dalunfa.jpg",
-          "기념품과 마지막 장보기.",
-          "맥주, 과자, 식료품 등 구매가능",
-          [120.392831, 36.081544],
-          "08:00–22:00",
-        ],
-        ["10:30", "호텔 체크아웃", "images/hotel.jpg", "짐 챙기고 체크아웃", "공항 이동 전 짐 보관", [120.3798, 36.0698], "12:00 전 체크아웃"],
-        ["11:30", "MIX Mall", "images/mixc-mall.jpg", "점심 전 마지막 쇼핑 또는 휴식.", "시간이 부족시 생략 가능.", [120.3775, 36.0673], "10:00–22:00"],
-        [
-          "13:00",
-          "신호산 또는 소어산 공원",
-          "https://n.sinaimg.cn/spider20210825/191/w1024h767/20210825/2998-910539947a1a24554881e1d498f89e46.jpg",
-          "칭다오 빨간 지붕 전경을 담는 전망 산책.",
-          "두 장소 중 컨디션과 이동 동선에 맞춰 하나를 선택",
-          [120.3315, 36.0665],
-          "신호산 08:00–17:30 · ¥5부터",
-        ],
+        ["09:00", "따룬파 슈퍼마켓 · 닝샤점", "images/dalunfa.jpg", "현지 슈퍼마켓.", "맥주, 과자, 소스 등등 난 치약 휴지 살거임", [120.392831, 36.081544], "08:00–22:00"],
+        ["10:30", "호텔 체크아웃", "images/hotel.jpg", "짐 챙기고 체크아웃 잘 챙겨라 못돌아간다.", "공항 이동 전 짐 보관", [120.3798, 36.0698], "12:00 전 체크아웃"],
+        ["11:30", "MIX Mall", "images/mixc-mall.jpg", "마지막으로 살거 사라. 밥 뭐먹을지 모르겠다", "시간이 부족시 생략 가능.", [120.3775, 36.0673], "10:00–22:00"],
+        ["13:00", "신호산 또는 소어산 공원", "https://n.sinaimg.cn/spider20210825/191/w1024h767/20210825/2998-910539947a1a24554881e1d498f89e46.jpg", "경치가 좋다 힘들거다 아주 좋다. 올라가면 기분 좋다.", "힘든거 덜힘든거 둘중 하나 골라라", [120.3315, 36.0665], "신호산 08:00–17:30 · ¥5부터"],
         ["14:00", "1/4 Photo · 사진", "images/quarter-photo.jpg", "여행 단체 사진 촬영.", "", [120.3185, 36.071], "3인 기준 nnn원"],
-        [
-          "15:20",
-          "칭다오 공항 이동",
-          "images/airport.jpg",
-          "15:20~15:30 사이 공항으로 출발.",
-          "공항에도 차자있음.",
-          [120.0934, 36.3623],
-          "공항 도착 권장 16:30 전",
-        ],
-        [
-          "18:30",
-          "SC4617 · 산동항공",
-          "images/airport.jpg",
-          "18:30 출발 · 20:45 도착 예정",
-          "굿바이 칭다오",
-          [120.0934, 36.3623],
-          "비행 2시간 15분 · 항공권 확인",
-        ],
+        ["15:20", "칭다오 공항 이동", "images/airport.jpg", "15:20~15:30 사이 공항으로 출발할거다.", "공항에도 차지있음.", [120.0934, 36.3623], "공항 도착 권장 16:30 전"],
+        ["18:30", "SC4617 · 산동항공", "images/airport.jpg", "18:30 출발 · 20:45 도착 예정", "굿바이 칭다오 조용히 입국한다", [120.0934, 36.3623], "비행 2시간 15분 · 항공권 확인"],
       ],
     },
   },
@@ -186,9 +74,7 @@ function weatherIcon(cls) {
 
 async function loadWeather() {
   try {
-    const res = await fetch(
-      "https://api.open-meteo.com/v1/forecast?latitude=36.07&longitude=120.38&current=temperature_2m,precipitation,weathercode&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_sum&timezone=Asia%2FShanghai&forecast_days=16",
-    );
+    const res = await fetch("https://api.open-meteo.com/v1/forecast?latitude=36.07&longitude=120.38&current=temperature_2m,precipitation,weathercode&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_sum&timezone=Asia%2FShanghai&forecast_days=16");
     if (!res.ok) throw new Error("weather fetch failed");
     weatherData = await res.json();
     const active = document.querySelector(".tab.active");
@@ -292,9 +178,7 @@ function imagesFor(e) {
   return Array.isArray(e[2]) ? e[2] : e[2] ? [e[2]] : [];
 }
 function imageSlot(name, url = "") {
-  return url
-    ? `<div class="image-slot has-image"><img src="${url}" alt="${name}"/><small>${name}</small></div>`
-    : `<div class="image-slot"><span>사진 추가</span><small>${name}</small></div>`;
+  return url ? `<div class="image-slot has-image"><img src="${url}" alt="${name}"/><small>${name}</small></div>` : `<div class="image-slot"><span>사진 추가</span><small>${name}</small></div>`;
 }
 function mapPanel(day) {
   return `<section class="map-panel"><div class="map-topline"><b>오늘의 동선</b><span>${day.events.length}곳 방문</span></div><div id="amap-canvas"><div class="map-loading">지도 불러오는 중</div></div><div class="route-summary">${day.events.map((e, i) => `<span><i>${i + 1}</i>${e[1]}</span>`).join("<b>→</b>")}</div></section>`;
@@ -392,11 +276,8 @@ const modal = document.querySelector("#detailModal");
 function openModal(e) {
   const info = getInfo(e),
     images = imagesFor(e);
-  const gallery = images.length
-    ? `<div class="modal-gallery">${images.map((url, i) => `<img class="gallery-image ${i ? "is-hidden" : ""}" src="${url}" alt="${e[1]}"/>`).join("")}<span class="image-count">1 / ${images.length}</span>${images.length > 1 ? '<button class="gallery-next" aria-label="다음 사진">›</button>' : ""}</div>`
-    : `<div class="modal-gallery">${imageSlot(e[1])}<span class="image-count">1 / 1</span></div>`;
-  document.querySelector("#modalContent").innerHTML =
-    `${gallery}<div class="modal-copy"><p class="eyebrow">${e[0]} · 일정 상세</p><h3>${e[1]}</h3>${chineseNameRow(info[0])}<button class="address" data-address="${info[1]}">${info[1]} <span>↗</span></button><p>${e[3]}</p><div class="tip"><strong>${e[6]}</strong><br>${e[4]}</div></div>`;
+  const gallery = images.length ? `<div class="modal-gallery">${images.map((url, i) => `<img class="gallery-image ${i ? "is-hidden" : ""}" src="${url}" alt="${e[1]}"/>`).join("")}<span class="image-count">1 / ${images.length}</span>${images.length > 1 ? '<button class="gallery-next" aria-label="다음 사진">›</button>' : ""}</div>` : `<div class="modal-gallery">${imageSlot(e[1])}<span class="image-count">1 / 1</span></div>`;
+  document.querySelector("#modalContent").innerHTML = `${gallery}<div class="modal-copy"><p class="eyebrow">${e[0]} · 일정 상세</p><h3>${e[1]}</h3>${chineseNameRow(info[0])}<button class="address" data-address="${info[1]}">${info[1]} <span>↗</span></button><p>${e[3]}</p><div class="tip"><strong>${e[6]}</strong><br>${e[4]}</div></div>`;
   bindAddress(document.querySelector("#modalContent .address"), e[5], info[0]);
   bindCopy(document.querySelector("#modalContent .chinese-name"));
   bindGallery();
