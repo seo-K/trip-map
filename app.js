@@ -474,17 +474,6 @@ function selectTab(tab) {
   renderWeather(tab.dataset.tab);
 }
 tabs.forEach((tab) => tab.addEventListener("click", () => selectTab(tab)));
-let swipeStartX = 0;
-content.addEventListener("pointerdown", (e) => {
-  swipeStartX = e.clientX;
-});
-content.addEventListener("pointerup", (e) => {
-  const delta = e.clientX - swipeStartX;
-  if (Math.abs(delta) < 70) return;
-  const active = [...tabs].findIndex((t) => t.classList.contains("active"));
-  const next = Math.max(0, Math.min(tabs.length - 1, active + (delta < 0 ? 1 : -1)));
-  if (next !== active) selectTab(tabs[next]);
-});
 showDay("day1");
 tabs.forEach((t) => t.classList.toggle("active", t.dataset.tab === "day1"));
 loadWeather();
